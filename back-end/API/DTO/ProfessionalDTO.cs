@@ -15,7 +15,7 @@ namespace DTO
         public string Street { get; set; }
         public Nullable<int> NumHouse { get; set; }
         public string DescriptionOn { get; set; }
-        public List<SpecializationsDTO> professions { get; set; }
+        public List<ProfessionDTO> professions { get; set; }
     }
 
     

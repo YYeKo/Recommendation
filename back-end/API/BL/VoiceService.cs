@@ -14,7 +14,7 @@ namespace BL
     {
         
         private static readonly RecommendationsEntities3 db = new RecommendationsEntities3();
-        //private static Areas db = new Areas();
+        
         public static string SelectedLetters(int a)
         {
             string str1 = "אבגדה";

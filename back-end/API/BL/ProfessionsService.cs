@@ -12,12 +12,12 @@ namespace BL
     public class ProfessionsService
     {
         private static RecommendationsEntities3 db = new RecommendationsEntities3();
-        public static List<SpecializationsDTO> GetProfessions()
+        public static List<ProfessionDTO> GetProfessions()
         {
             using (RecommendationsEntities3 db = new RecommendationsEntities3())//??????????????????????????????????
             {
                 //להחזיר מייד רשימה של מקצועות וגם התמחויות או להחזיר רשימה של מקצועות וכאשר יבחר מקצוע תתבצע שוב קריאה לשרת ע"מ לקבל את רשימת ההתמחויות?????? 
-                return ProfessionConvertion.SpecializationsListToDTO(db.Professions.ToList());
+                return ProfessionConvertion.professionsListToDTO(db.Professions.ToList());
             }
         }
 
