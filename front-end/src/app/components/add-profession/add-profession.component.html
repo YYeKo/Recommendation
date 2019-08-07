@@ -1,0 +1,19 @@
+<p>
+  הוסף מקצוע
+</p>
+<form>
+<p>
+    <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>מקצוע</mat-label>
+        <input matInput name="profession" [(ngModel)]="profession" required maxlength="20">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-error>!שדה חובה</mat-error>
+    </mat-form-field>
+ </p>
+
+ <!-- <mat-radio-group aria-label="Select an option">
+    <mat-radio-button value="1"></mat-radio-button>
+    <mat-radio-button value="2"></mat-radio-button>
+  </mat-radio-group> -->
+
+</form>

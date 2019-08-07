@@ -1,0 +1,167 @@
+<h2>{{title?'הרשמה':'עדכון פרטים'}}</h2>
+
+<form *ngIf="professional!=null" #userDetailsform="ngForm"  (ngSubmit)="register()">
+
+<div>
+   <mat-form-field appearance="outline" class="example-full-width">
+       <mat-label> שם משתמש</mat-label>
+       <input matInput name="UserName"  [(ngModel)]="professional.UserName"  required maxlength="20">
+       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <mat-error>!שדה חובה</mat-error>
+   </mat-form-field>
+</div>
+<div>
+    <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>סיסמא</mat-label>
+        <input matInput name="UserPassword"  [(ngModel)]="professional.UserPassword" required maxlength="20" [type]="hide ? 'password' : 'text'">
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-hint>עד 20 תווים</mat-hint>      
+        <mat-error>!שדה חובה</mat-error>
+    </mat-form-field>
+</div>
+<div>
+   <mat-form-field appearance="outline" class="example-full-width">
+       <mat-label> מייל</mat-label>
+       <input matInput name="UserEmail"  [(ngModel)]="professional.UserEmail" [formControl]="email"  maxlength="30" required>
+       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+   </mat-form-field>
+</div>
+
+<div>
+    <mat-form-field appearance="outline" class="example-full-width">
+            <mat-label> עיר</mat-label>
+<input type="text" matInput name="CityName"  [(ngModel)]="professional.CityName"  aria-label="Number"  [matAutocomplete]="auto" (ngModelChange)="searchCity($event)" required >
+      <mat-autocomplete  #auto="matAutocomplete" >
+        <mat-option *ngFor="let city of filteredCities " [value]="city.CityName">
+                {{city.CityName}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error>!שדה חובה</mat-error>
+    </mat-form-field>
+</div> 
+    <div>
+            <mat-form-field appearance="outline" class="example-full-width">
+                <mat-label>טלפון</mat-label>
+                <input matInput name="UserPhone" pattern="[0-9]{9,10}" [(ngModel)]="professional.UserPhone" required maxlength="10"  #phone="ngModel">
+                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                <mat-error *ngIf="phone.invalid">{{phone.errors?.required?'שדה חובה!':'מספר לא תקין'}}</mat-error>
+            </mat-form-field>
+    </div>
+          
+    <!-- לעשות כך : ע"י לחיצה על כפתור וכו' או שיהיו 2 קישוריות ועפ"י הקישורית נדע אם להציג את הפרטים הנוספים -->
+<div *ngIf="checkIfProfessional()">
+        <div>
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <mat-label> שם עסקי</mat-label>
+                    <input matInput name="BussName" [(ngModel)]="professional.BussName" required >
+                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+                    <mat-error>!שדה חובה</mat-error>
+                </mat-form-field>
+        </div>
+<div>
+   <mat-form-field appearance="outline" class="example-full-width">
+       <mat-label> שם פרטי</mat-label>
+       <input matInput name="FirstName" [(ngModel)]="professional.FirstName" required >
+       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <mat-error>!שדה חובה</mat-error>
+   </mat-form-field>
+</div>
+<div>
+   <mat-form-field appearance="outline" class="example-full-width">
+       <mat-label> שם משפחה</mat-label>
+       <input matInput name="LastName" [(ngModel)]="professional.LastName" required >
+       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <mat-error>!שדה חובה</mat-error>
+   </mat-form-field>
+</div>
+<div>
+   <mat-form-field appearance="outline" class="example-full-width">
+       <mat-label> רחוב</mat-label>
+       <input matInput name="Street" [(ngModel)]="professional.Street" required >
+       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <mat-error>!שדה חובה</mat-error>
+   </mat-form-field>
+</div>
+<div>
+   <mat-form-field appearance="outline" class="example-full-width">
+       <mat-label> מספר בית</mat-label>
+       <input matInput type="number" name="NumHouse" [(ngModel)]="professional.NumHouse" required >
+       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <mat-error>!שדה חובה</mat-error>
+   </mat-form-field>
+</div>
+
+<div>
+<mat-form-field appearance="outline" class="example-full-width">
+    <mat-label> תיאור</mat-label>
+    <textarea matInput  name="DescriptionOn" [(ngModel)]="professional.DescriptionOn" maxlength="250" ></textarea>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>   -->
+</mat-form-field>
+
+
+</div>
+<div [formGroup]="storeForm.controls.availableDays">
+        <mat-checkbox *ngFor="let availableDay of days;" formControlName="{{availableDay}}">{{availableDay}}</mat-checkbox>
+      </div>
+</div>
+<button type="button" mat-raised-button (click)='setProfessional()'>{{isProfessional?'בטל רישום כבעל מקצוע':'הרשם כבעל מקצוע'}}</button>
+<button mat-raised-button [disabled]="!userDetailsform.valid||!email.valid">שלח</button>
+</form>
+
+<P>בקשה להוספת מקצוע למייל</P>
+
+
+
+
+<!-- <select name="CityName" [(ngModel)]="professional.City" required >
+        <option *ngFor="let city of cityList" [value]="city.CityId">{{city.CityName}}</option>
+      </select>
+    <label>עיר</label> -->
+
+
+<!-- <input type="submit" /> -->
+
+<!-- <input type="button" [value]="isProfessional?'בטל רישום כבעל מקצוע':'הרשם כבעל מקצוע'" (click)='setProfessional()'/> -->
+
+<!-- <textarea name="DescriptionOn" [(ngModel)]="professional.DescriptionOn" maxlength="250" rows="3" cols="75" required></textarea>
+<label for="DescriptionOn">תיאור</label>
+<br> -->
+
+
+<!-- <input type="text" name="Street" [(ngModel)]="professional.Street" required>
+<label for="Street">רחוב</label> -->
+
+
+<!-- <input type="text" name="UserName" [(ngModel)]="professional.UserName" required #trakName="ngModel"/>
+    <label> שם משתמש</label>
+<br>
+<p *ngIf="!trakName.valid && trakName.touched">The name is'nt valid</p>
+<input type="password" name="UserPassword" [(ngModel)]="professional.UserPassword" required/>
+    <label>סיסמא</label>   
+<br>
+<input type="email" name="UserEmail" [(ngModel)]="professional.UserEmail" required #trakEmail="ngModel"/>
+   <label>מייל</label>
+   <p *ngIf="!trakEmail.valid && trakEmail.touched">The mail is'nt valid</p>
+   <div *ngIf="checkIfProfessional()">
+        <input type="text" name="FirstName" [(ngModel)]="professional.FirstName" required>
+        <label for="FirstName">שם פרטי</label>
+        <br>
+        <input type="text" name="LastName" [(ngModel)]="professional.LastName" required>
+        <label for="LastName">שם משפחה</label>
+        <br>
+        <br>
+<input type="number" name="NumHouse" [(ngModel)]="professional.NumHouse" required>
+<label for="NumHouse">מספר בית</label>
+</div> -->
+<!-- <input type="button" [value]="isProfessional?'בטל רישום כבעל מקצוע':'הרשם כבעל מקצוע'" (click)='setProfessional()'/> -->
+
+<!-- <p *ngIf="!trakName.valid && trakName.touched">The name is'nt valid</p> -->
+<!-- <input type="text" name="UserPhone" [(ngModel)]="professional.UserPhone" maxlength="10" required #phone="ngModel"/> 
+<label>טלפון</label> -->
+
+
+<!-- <a mat-raised-button routerLink=".">Link</a> -->

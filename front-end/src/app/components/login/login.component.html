@@ -1,0 +1,46 @@
+<h2>
+  כניסה
+ </h2>
+<div *ngIf="isFailure">
+ <p >הכניסה נכשלה, אחד או יותר מהנתונים שהזנת שגוי</p>
+ <input type="button" (click)="RemoveMessege()" value="X"/>
+</div>
+<form #userModelForm="ngForm" (ngSubmit)="LogIn(name,pass)">
+<p>
+    <mat-form-field appearance="outline" >
+        <mat-label> שם משתמש</mat-label>
+        <input matInput name="name" #userName [(ngModel)]="name" (focus)="RemoveMessege()" required maxlength="20">
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        <mat-error>!שדה חובה</mat-error>
+    </mat-form-field>
+</p>
+<p>
+    <mat-form-field appearance="outline" >
+        <mat-label>סיסמא</mat-label>
+        <input matInput name="password" #userPassword [(ngModel)]="pass" (focus)="RemoveMessege()" required maxlength="20" [type]="hide ? 'password' : 'text'">
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>       -->
+        <mat-error>!שדה חובה</mat-error>
+    </mat-form-field>
+</p>
+<button mat-raised-button >כניסה</button>
+ <a [routerLink]="['/register']">הרשמה</a> 
+</form>
+
+
+
+ <!-- <form #userModelForm="ngForm" (ngSubmit)="LogIn(name,pass)">
+   <label for="name">:שם משתמש</label><br/>
+   
+   <input type="text"  name="name"  #userName [(ngModel)]="name" (focus)="RemoveMessege()" required/><br/>
+  
+   <label for="password">:סיסמא</label><br/>
+   <input type="password"  name="password"  #userPassword [(ngModel)]="pass" (focus)="RemoveMessege()" required/><br/>
+  
+ <input type="submit" value="כניסה"   />
+ <a [routerLink]="['/register']">הרשמה</a>  
+
+ </form>
+  -->

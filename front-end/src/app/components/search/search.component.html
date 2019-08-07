@@ -1,0 +1,41 @@
+<h2>חיפוש</h2>
+<!-- <form #SearchForm="ngForm" (ngSubmit)="search();SearchForm.reset()">
+  <input type="text" name="profession" placeholder="תחום">
+  <select name="profession"  [(ngModel)]="profession"  required>
+    <option *ngFor="let profession of professionList" [value]="profession.specializationId" >{{profession.specializationName}}</option>
+  </select>
+  <input type="text" name="city" placeholder="יישוב">
+  <select name="CityName" [(ngModel)]="city" required>
+    <option *ngFor="let city of cityList" [value]="city.CityId" >{{city.CityName}}</option>
+  </select>
+  <input type="submit" name="search" value="חפש">
+</form> -->
+
+
+<form #SearchForm="ngForm" (ngSubmit)="search();SearchForm.reset()">
+<p>
+    <mat-form-field appearance="outline" >
+            <mat-label> תחום</mat-label>
+      <input type="text" matInput name="CityName" [(ngModel)]="professionName"  aria-label="Number" [formControl]="myControl" [matAutocomplete]="auto" (ngModelChange)="searchProfession($event)" required >
+      <mat-autocomplete  #auto="matAutocomplete" >
+        <mat-option *ngFor="let profession of filteredProfessions" [value]="profession.specializationName">
+                {{profession.specializationName}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error>!שדה חובה</mat-error>
+    </mat-form-field>
+</p> 
+<p>
+    <mat-form-field appearance="outline" >
+            <mat-label> יישוב</mat-label>
+<input type="text" matInput name="CityName" [(ngModel)]="cityName"  aria-label="Number" [formControl]="myControl" [matAutocomplete]="auto1" (ngModelChange)="searchCity($event)" required >
+      <mat-autocomplete  #auto1="matAutocomplete" >
+        <mat-option *ngFor="let city of filteredCities " [value]="city.CityName">
+                {{city.CityName}}
+        </mat-option>
+      </mat-autocomplete>
+      <mat-error>!שדה חובה</mat-error>
+    </mat-form-field>
+</p>
+<button mat-raised-button >שלח</button>
+</form>

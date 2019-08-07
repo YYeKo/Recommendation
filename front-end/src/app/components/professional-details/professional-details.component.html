@@ -1,0 +1,11 @@
+<div>{{professional.FirstName}} {{professional.LastName}}{{professional.DescriptionOn}}</div>
+
+<a [routerLink]="['/AddRecommendation',professional.UserId]">הוסף המלצה</a>
+<button type="button" mat-raised-button (click)='showHideRec()'>{{!showRec?'הצג המלצות':'הסתר מלצות'}}</button>
+<div *ngIf="showRec">
+    <h2>המלצות</h2>
+<ol  [ngStyle]="{'list-style-type':'none'}" >
+        <li *ngFor="let result of resultRecommendationList"><app-show-recommendations [recommendation]="result"></app-show-recommendations></li>
+      </ol>
+</div>
+<p>guard!!!!!!!!!</p>

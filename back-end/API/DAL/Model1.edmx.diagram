@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fb3a911654ab4dd39bd8076b64bdeeb8" Name="Diagram1">
+        <EntityTypeShape EntityType="RecommendationsModel.Areas" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.Cities" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.Professionals" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.ProfessionForProfessional" Width="1.5" PointX="4" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.Professions" Width="1.5" PointX="6.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.Recommendations" Width="1.5" PointX="10.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.Users" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecommendationsModel.UserSearch" Width="1.5" PointX="10.375" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="RecommendationsModel.fkArea" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkCityU" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkProfessional" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkProfessionalSearch" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkProfessionalSpecialization" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkuser" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkspecialization" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.FK__Specializ__baseS__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="RecommendationsModel.fkUserIdSearch" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

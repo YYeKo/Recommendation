@@ -1,0 +1,38 @@
+
+<mat-card class="example-card">
+<h2>הוספת המלצה</h2>
+<form #recommendationForm="ngForm" (ngSubmit)="addRecommendation();recommendationForm.reset()">
+  <p>{{currentUser}}ממליץ על: {{professionalName}}</p>
+  <br>
+  <label for=" RatePrice">דרג מחיר:</label><br/>
+  <mat-slider class="slider" min="1" max="100" name="RatePrice" [(ngModel)]="recommendation.RatePrice"></mat-slider><br/>
+  <label for="RateProfessionalism">דרג מקצועיות:</label><br/>
+  <mat-slider class="slider" min="1" max="100" name="RateProfessionalism" [(ngModel)]="recommendation.RateProfessionalism"></mat-slider><br/>
+  <label for="RateArrival">דרג זמן:</label><br/>
+  <mat-slider class="slider" min="1" max="100" name="RateArrival" [(ngModel)]="recommendation.RateArrival"></mat-slider><br/>
+  <div>
+  <mat-form-field appearance="outline" class="example-full-width">
+    <mat-label> הערות</mat-label>
+    <textarea matInput  name="Comments" [(ngModel)]="recommendation.Comments" maxlength="150" ></textarea>
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>   -->
+</mat-form-field>
+</div><br>
+<mat-checkbox  [ngModelOptions]="{standalone: true}" [(ngModel)]="recommendation.IsEnable">אישור הצגת פרטים אישיים</mat-checkbox>
+<br>
+  
+  <button mat-raised-button>שלח</button>
+</form>
+</mat-card>
+
+
+
+<!-- <select name="profesionalName" [(ngModel)]="recommendation.Professional" required>
+      <option *ngFor="let professional of professionalList" [value]="professional.ProfessionalId">{{professional.FirstName+''+professional.LastName}}</option>
+    </select>  -->
+  <!-- <input type="text" name="profesionalName" [(ngModel)]="recommendation.Professional"><br/>   -->
+  <!-- <input type="checkbox" name="IsEnable" [(ngModel)]="recommendation.IsEnable">
+  <label for="IsEnable">:מאשר הצגת פרטים אישיים </label> -->
+
+  <!-- <label>: הערות</label>
+  <textarea maxlength="70" name="Comments" [(ngModel)]="recommendation.Comments"></textarea> -->
+  <!-- <input type="submit"> -->

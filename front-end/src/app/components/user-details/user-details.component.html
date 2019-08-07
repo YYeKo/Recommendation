@@ -1,0 +1,28 @@
+<p>
+  user-details works!
+</p>
+<!-- מיותר -->
+<form #userDetailsform="ngForm" (ngSubmit)="check();userDetailsform.reset()">
+    <input type="text" name="UserName" [(ngModel)]="user.UserName" required #trakName="ngModel"/>
+    <label>שם</label>
+<br>
+<p *ngIf="!trakName.valid && trakName.touched">The name is'nt valid</p>
+
+    <input type="password" name="UserPassword" [(ngModel)]="user.UserPassword" required/>
+    <label>ססמא</label>
+<br>
+    <select name="CityName" [(ngModel)]="user.City" required>
+        <option *ngFor="let city of cityList" [value]="city.CityId">{{city.CityName}}</option>
+      </select>
+    <label>עיר</label>
+<br>
+    <input type="email" name="UserEmail" [(ngModel)]="user.UserEmail" required #trakEmail="ngModel"/>
+   <label>מייל</label>
+   <p *ngIf="!trakEmail.valid && trakEmail.touched">The mail is'nt valid</p>
+    <br>
+    <input type="text" name="UserPhone" [(ngModel)]="user.UserPhone" required #trakPhone="ngModel"/> 
+  <label>טלפון</label>
+    <br>
+    <p *ngIf="!trakPhone.valid && trakPhone.touched">The phone is'nt valid</p>
+    <input type="submit" />
+  </form>

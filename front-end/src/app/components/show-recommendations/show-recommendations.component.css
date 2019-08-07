@@ -1,0 +1,9 @@
+mat-slider {
+    width: 300px;
+   
+  }
+
+
+  .mat-slider-track-wrapper {
+    background-color: aquamarine;
+  }
