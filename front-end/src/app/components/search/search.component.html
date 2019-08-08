@@ -18,8 +18,8 @@
             <mat-label> תחום</mat-label>
       <input type="text" matInput name="CityName" [(ngModel)]="professionName"  aria-label="Number" [formControl]="myControl" [matAutocomplete]="auto" (ngModelChange)="searchProfession($event)" required >
       <mat-autocomplete  #auto="matAutocomplete" >
-        <mat-option *ngFor="let profession of filteredProfessions" [value]="profession.specializationName">
-                {{profession.specializationName}}
+        <mat-option *ngFor="let profession of filteredProfessions" [value]="profession.ProfessionName">
+                {{profession.ProfessionName}}
         </mat-option>
       </mat-autocomplete>
       <mat-error>!שדה חובה</mat-error>

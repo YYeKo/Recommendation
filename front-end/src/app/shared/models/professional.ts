@@ -1,5 +1,5 @@
 import { User } from "./user";
-import { Specializations } from "./specializations";
+import { Professions } from "./professions";
 
 export class Professional extends User{
     constructor(
@@ -12,7 +12,7 @@ export class Professional extends User{
         public  Street?: string,
         public  NumHouse?: number,
         public  DescriptionOn?: string,
-        public  professions?:Specializations[]
+        public  professions?:Professions[]
     )
     {   
         super();

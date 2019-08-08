@@ -1,12 +1,11 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Cities } from 'src/app/shared/models/cities';
 import { UserService } from 'src/app/shared/services/user.service';
-import { Professions } from 'src/app/shared/models/professions';
 import {ProfessionService}  from 'src/app/shared/services/profession.service';
 import { RecommendationService } from 'src/app/shared/services/recommendation.service';
 import { Professional } from 'src/app/shared/models/professional';
 import { Router } from '@angular/router';
-import { Specializations } from 'src/app/shared/models/specializations';
+import { Professions } from 'src/app/shared/models/professions';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -20,21 +19,24 @@ export class SearchComponent implements OnInit {
   cityName:string;
   profession:number;
   professionName:string;
-  professionList:Specializations[];
+  professionList:Professions[];
   cityList:Cities[];
   ProfessionalList:Professional[];
  //===================
  filteredCities:Cities[];
- filteredProfessions:Specializations[];
+ filteredProfessions:Professions[];
  myControl = new FormControl();
  
   constructor(private userService:UserService,private professionService:ProfessionService,private recommService:RecommendationService,private router:Router) { }
 
   ngOnInit() {
+    debugger
     this.userService.getCities().subscribe(
       cl=>this.cityList=this.filteredCities=cl);
     this.professionService.getProfessions().subscribe(
-      p=>this.professionList=this.filteredProfessions=p);
+      p=>
+     { debugger;
+      this.professionList=this.filteredProfessions=p});
   }
 
   search()
@@ -45,8 +47,8 @@ export class SearchComponent implements OnInit {
       this.city=element.CityId;
     });
     this.professionList.forEach(element => {
-      if(element.specializationName==this.professionName)
-      this.profession=element.specializationId;
+      if(element.ProfessionName==this.professionName)
+      this.profession=element.ProfessionId;
     });
     this.recommService.setCity(this.cityName);
     this.recommService.setProfession(this.professionName);
@@ -64,6 +66,6 @@ export class SearchComponent implements OnInit {
   }
   searchProfession(event)
   {
-    this.filteredProfessions=this.professionList.filter(prof=>prof.specializationName.startsWith(event)==true);
+    this.filteredProfessions=this.professionList.filter(prof=>prof.ProfessionName.startsWith(event)==true);
   }
 }

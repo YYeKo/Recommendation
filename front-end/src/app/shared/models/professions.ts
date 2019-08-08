@@ -1,7 +1,9 @@
 export class Professions {
     constructor(
         public  ProfessionId?:number, 
-        public  proffesionName?:string 
+        public  ProfessionName?:string ,
+        public BaseProfessionId?:number,
+        public ProfessionBaseName?:string
     )
     {}
 }
