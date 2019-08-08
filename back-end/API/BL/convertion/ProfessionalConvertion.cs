@@ -11,29 +11,43 @@ namespace BL.convertion
     {
         public static Professionals ProfessionalToDal(ProfessionalDTO professional)
         {
-           return new Professionals()
+            return new Professionals()
             {
-               BussName=professional.BussName,
+                BussName = professional.BussName,
                 ProfessionalId = professional.ProfessionalId,
                 FirstName = professional.FirstName,
                 LastName = professional.LastName,
                 DescriptionOn = professional.DescriptionOn,
                 Street = professional.Street,
                 NumHouse = professional.NumHouse,
-                Users = new Users
+                Users = new Users()
                 {
-                    UserPhone=professional.UserPhone,
+                    UserPhone = professional.UserPhone,
                     UserEmail = professional.UserEmail,
-                     City=professional.City,
-                     IsManager=professional.IsManager,
-                     UserPassword=professional.UserPassword,
-                     UserName=professional.UserName,
-                     UserId=professional.UserId
+                    City = professional.City,
+                    IsManager = professional.IsManager,
+                    UserPassword = professional.UserPassword,
+                    UserName = professional.UserName,
+                    UserId = professional.UserId
                 }
-           
-        };
-            
-          
+
+            };
+
+       }
+
+        public static Professionals ProfessionalWithoutUserToDal(ProfessionalDTO professional)
+        {
+            return new Professionals()
+            {
+                BussName = professional.BussName,
+                ProfessionalId = professional.UserId,
+                FirstName = professional.FirstName,
+                LastName = professional.LastName,
+                DescriptionOn = professional.DescriptionOn,
+                Street = professional.Street,
+                NumHouse = professional.NumHouse,
+                
+            };
 
         }
         public static ProfessionalDTO ProfessionalToDTO(Professionals professional)

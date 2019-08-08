@@ -1,14 +1,14 @@
 <!-- <h1>מומלצון</h1> -->
 <nav>
-  <a [routerLink]="['']">דף הבית</a>
-  <a [routerLink]="['Login']">כניסה</a>
-  <a [routerLink]="['register']">הרשמה</a>
-  <a [routerLink]="['search']">חיפוש </a>
-  <a [routerLink]="['addProfession']">הוסף מקצוע</a>
+  <a mat-button [routerLink]="['']">דף הבית</a>
+  <a  mat-button [routerLink]="['Login']">כניסה</a>
+  <a mat-button [routerLink]="['register']">הרשמה</a>
+  <a  mat-button [routerLink]="['search']">חיפוש </a>
+  <a mat-button [routerLink]="['addProfession']">הוסף מקצוע</a>
   <!-- <a [routerLink]="['addProfessional']">רישום בעל מקצוע</a>  -->
-  <a (click)="navigate()" [routerLink]>ערוך בעל מקצוע</a> 
+  <a  mat-button (click)="navigate()" [routerLink]>ערוך בעל מקצוע</a> 
   
   {{getuserName()}}
-<button *ngIf="getcurrentUser()" type="button" mat-raised-button (click)='logOut()'>יציאה</button>
+<button  *ngIf="getcurrentUser()" type="button" mat-raised-button (click)='logOut()'>יציאה</button>
 
 </nav>

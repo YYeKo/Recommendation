@@ -50,6 +50,11 @@ export class SearchComponent implements OnInit {
       if(element.ProfessionName==this.professionName)
       this.profession=element.ProfessionId;
     });
+    if(this.profession==undefined)
+    {
+      ///////
+      debugger
+    }
     this.recommService.setCity(this.cityName);
     this.recommService.setProfession(this.professionName);
     this.recommService.getFilteredProfessionals(this.profession,this.city).subscribe(

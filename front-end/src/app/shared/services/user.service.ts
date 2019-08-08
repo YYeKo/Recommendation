@@ -29,9 +29,11 @@ export class UserService {
     return this.http.post<boolean>(`${BaseUrl}/registerUser`,user)
   }
 
-  registerProfessional(professional:Professional,profession:Professions):Observable<boolean>
+  registerProfessional(professional:Professional):Observable<boolean>
   {
-    return this.http.post<boolean>(`${BaseUrl}/registerProfessional`,{profesional:professional,subject:profession})
+    return this.http.post<boolean>(`${BaseUrl}/registerProfessional`,professional)
+    // return this.http.post<boolean>(`${BaseUrl}/registerProfessional`,{profesional:professional,subject:profession})
+
   }
 
   getCities():Observable<Cities[]>

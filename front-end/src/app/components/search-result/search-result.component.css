@@ -1,7 +1,9 @@
 table {
     width: 100%;
   }
-  
+  .mat-expansion-panel-header {
+    height: 180px;
+  }
   tr.example-detail-row {
     height: 0;
   }
@@ -45,3 +47,5 @@ table {
   .example-element-description-attribution {
     opacity: 0.5;
   }
+
+ 

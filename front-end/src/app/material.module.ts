@@ -1,6 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatButtonModule,MatFormFieldModule,MatSliderModule,MatTableModule,MatRadioModule, MatInputModule,MatAutocompleteModule, MatRippleModule,MatSelectModule,MatIconModule, MatCardModule} from '@angular/material';
+import {MatButtonModule,
+  MatFormFieldModule,
+  MatSliderModule,
+  MatExpansionModule,
+  MatTableModule,
+  MatRadioModule,
+   MatInputModule,
+   MatAutocompleteModule,
+    MatRippleModule,
+    MatSelectModule,
+    MatIconModule,
+     MatCardModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
@@ -19,7 +30,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTableModule,
     MatRadioModule,
     MatSliderModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ],
   exports:[
     MatButtonModule,
@@ -34,7 +46,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTableModule,
     MatRadioModule,
     MatSliderModule,
-    MatCardModule
+    MatCardModule,
+    MatExpansionModule
   ],
   declarations: []
 })

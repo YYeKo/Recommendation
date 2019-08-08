@@ -38,12 +38,21 @@ namespace BL
         /// <returns></returns>
         public static bool RegisterUser(UsersDTO user)
         {
+            var prof = db.Professionals.Find(user.UserId);
+            if(prof!=null)
+            {
+                
+                prof.UserSearch.Clear();
+                prof.Recommendations.Clear();
+                prof.ProfessionForProfessional.Clear();
+                db.Professionals.Remove(prof);
+                //db.SaveChanges();
+            }
             if (user.CityName != null)
             {
                 user.City = SetCityId(user.CityName);
             }
-            using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            {
+            
                 var u = db.Users.Find(user.UserId);
                 if(u==null)
                 {
@@ -65,7 +74,7 @@ namespace BL
                 }
                 catch  { return false; } 
 
-                }
+                
         }
 
         public static object GetProfessionalNameById(int id)
@@ -84,10 +93,10 @@ namespace BL
             }
         }
 
-        public static bool RegisterProfessional(ProfessionData professionalData)//??????profession
+        public static bool RegisterProfessional(ProfessionalDTO professional)//??????profession
         {
-            ProfessionalDTO professional = professionalData.professional;
-            int profession = professionalData.profession;
+            //ProfessionalDTO professional = professionalData.professional;
+            //int profession = professionalData.profession;
             if (professional.CityName != null)
             {
                 professional.City = SetCityId(professional.CityName);
@@ -95,11 +104,13 @@ namespace BL
             using (RecommendationsEntities3 db = new RecommendationsEntities3())
             { 
                 var prof = db.Professionals.Find(professional.ProfessionalId);
+                var user = db.Users.Find(professional.UserId);
                 if (prof == null)
                 {
-
-                    db.Professionals.Add(ProfessionalConvertion.ProfessionalToDal(professional));
-                    
+                    if (user == null)
+                        db.Professionals.Add(ProfessionalConvertion.ProfessionalToDal(professional));
+                    else
+                        db.Professionals.Add(ProfessionalConvertion.ProfessionalWithoutUserToDal(professional));                  
                 }
                 else
                 {
@@ -144,8 +155,8 @@ namespace BL
             }
         }
         public static bool IsExistsPassword(string password,int id)
-        {
-            return db.Users.FirstOrDefault(p => p.UserPassword == password&&p.UserId!=id) != null;
+        { var a = db.Users.FirstOrDefault(p => p.UserPassword == password && p.UserId != id);
+            return  a!= null;
         }
         public static int SetCityId(string cityname)
         {

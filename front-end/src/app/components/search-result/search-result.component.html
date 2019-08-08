@@ -2,8 +2,32 @@
 <ol [ngStyle]="{'list-style-type':'none'}" >
   <li *ngFor="let result of resultProfessionalsList"><app-professional-details [professional]="result"></app-professional-details></li>
 </ol>
+<br>
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let result of resultProfessionalsList">
+    <mat-expansion-panel-header >
+        <mat-action-row>
+            <button mat-button>Click me</button>
+          </mat-action-row>
+      <mat-panel-title>
+        Personal data
+      </mat-panel-title>
+      <mat-panel-description>
+        <app-professional-details [professional]="result"></app-professional-details>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    
+    <mat-form-field>
+      <input matInput placeholder="First name">
+    </mat-form-field>
 
-
+    <mat-form-field>
+      <input matInput placeholder="Age">
+    </mat-form-field>
+    
+  </mat-expansion-panel>
+  
+</mat-accordion>
 
 
 <!-- <table mat-table

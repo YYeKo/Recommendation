@@ -26,8 +26,6 @@ export class RegisterComponent implements OnInit {
  email = new FormControl('', [Validators.required, Validators.email]);
   filteredCities: Cities[];
 
-  storeForm: FormGroup;
-
   constructor(private service: UserService, private activatedRoute: ActivatedRoute,private router: Router,private formBuilder: FormBuilder) { 
     
     this.activatedRoute.params.subscribe(params => 
@@ -35,12 +33,16 @@ export class RegisterComponent implements OnInit {
         if(params['id']!=null)
         {
       this.service.getProfessionalById(params['id']).subscribe((res) => {
+        debugger
         this.professional=res;
         console.log(res)
-        if(res.ProfessionalId!=0)
+        if(res.ProfessionalId!=undefined)
         {
         this.setProfessional();
         this.title=false;
+        }
+        else {
+          this.isProfessional=false;
         }
       }, (err) => {
         this.router.navigate(['register'])
@@ -56,28 +58,17 @@ export class RegisterComponent implements OnInit {
 
   setProfessional()
   {
-    
     this.isProfessional=!this.isProfessional;
   }
   ngOnInit() {
 
-    this.initForm();
     this.service.getCities().subscribe(
       cl => this.filteredCities=this.cityList = cl);
   }
-
-  initForm(): void {
-    this.storeForm = new FormGroup({
-      UserName:new FormControl(),
-      UserPassword:new FormControl(),
-      CityName:new FormControl(),
-      UserEmail:new FormControl()
-
-    })
-  }
   register() {
-    if(this.checkIfProfessional())
-    this.service.registerProfessional(this.professional,this.profession).subscribe(
+    debugger
+    if(this.checkIfProfessional())//,this.profession
+    this.service.registerProfessional(this.professional).subscribe(
       
      (res) => {      
         if (res)
@@ -94,8 +85,10 @@ export class RegisterComponent implements OnInit {
       }
     else
     {
+      debugger
       this.service.registerUser(this.professional).subscribe(
         (res) => {
+          
            if (res)
            {
                 alert("register success");

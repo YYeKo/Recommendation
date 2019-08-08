@@ -101,13 +101,13 @@
     <textarea matInput  name="DescriptionOn" [(ngModel)]="professional.DescriptionOn" maxlength="250" ></textarea>
     <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>   -->
 </mat-form-field>
-
-
 </div>
+
+<!-- </div>
 <div [formGroup]="storeForm.controls.availableDays">
         <mat-checkbox *ngFor="let availableDay of days;" formControlName="{{availableDay}}">{{availableDay}}</mat-checkbox>
-      </div>
-</div>
+      </div>-->
+</div> 
 <button type="button" mat-raised-button (click)='setProfessional()'>{{isProfessional?'בטל רישום כבעל מקצוע':'הרשם כבעל מקצוע'}}</button>
 <button mat-raised-button [disabled]="!userDetailsform.valid||!email.valid">שלח</button>
 </form>

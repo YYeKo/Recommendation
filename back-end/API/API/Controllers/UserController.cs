@@ -33,9 +33,9 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("registerProfessional")]
-        public IHttpActionResult RegisterProfessional(ProfessionData professional)
+        public IHttpActionResult RegisterProfessional(ProfessionalDTO professional)
         {
-            if (UserService.IsExistsPassword(professional.professional.UserPassword,professional.professional.UserId))
+            if (UserService.IsExistsPassword(professional.UserPassword,professional.UserId))
                 return BadRequest("סיסמא קיימת");
             return Ok(UserService.RegisterProfessional(professional));
         }

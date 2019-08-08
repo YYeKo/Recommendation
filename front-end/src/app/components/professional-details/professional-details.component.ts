@@ -17,6 +17,7 @@ export class ProfessionalDetailsComponent implements OnInit {
   resultRecommendationList:Recommendation[];
   showRec:Boolean=false;
   @Input() professional:Professional   
+  
   constructor(private recService:RecommendationService,private userService:UserService,private router:Router) {
     
   }
@@ -27,7 +28,7 @@ export class ProfessionalDetailsComponent implements OnInit {
  {
    
    if(!this.userService.getcurrentUser)
-   this.router.navigate(['login']);//לתת הודעה שחייבים להכנס??
+   this.router.navigate(['login']);//לתת הודעה שחייבים להכנס??//להחזיר בחזרה לדף
    this.showRec=!this.showRec;
    if(this.showRec==true)
    {
