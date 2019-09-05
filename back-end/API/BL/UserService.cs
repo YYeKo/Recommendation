@@ -40,13 +40,11 @@ namespace BL
         {
             var prof = db.Professionals.Find(user.UserId);
             if(prof!=null)
-            {
-                
+            {               
                 prof.UserSearch.Clear();
                 prof.Recommendations.Clear();
                 prof.ProfessionForProfessional.Clear();
                 db.Professionals.Remove(prof);
-                //db.SaveChanges();
             }
             if (user.CityName != null)
             {
@@ -72,25 +70,7 @@ namespace BL
                     db.SaveChanges();
                     return true;
                 }
-                catch  { return false; } 
-
-                
-        }
-
-        public static object GetProfessionalNameById(int id)
-        {
-            return db.Professionals.Find(id).BussName;
-        }
-
-        public static UsersDTO GetProfessionalById(int id)
-        {
-            using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            {
-                var p = db.Users.Find(id);
-                if(p.Professionals!=null)
-                return ProfessionalConvertion.ProfessionalToDTO(p.Professionals);
-                return UsersConvertion.UserToDTO(p);
-            }
+                catch  { return false; }           
         }
 
         public static bool RegisterProfessional(ProfessionalDTO professional)//??????profession
@@ -102,7 +82,7 @@ namespace BL
                 professional.City = SetCityId(professional.CityName);
             }
             using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            { 
+            {
                 var prof = db.Professionals.Find(professional.ProfessionalId);
                 var user = db.Users.Find(professional.UserId);
                 if (prof == null)
@@ -110,7 +90,7 @@ namespace BL
                     if (user == null)
                         db.Professionals.Add(ProfessionalConvertion.ProfessionalToDal(professional));
                     else
-                        db.Professionals.Add(ProfessionalConvertion.ProfessionalWithoutUserToDal(professional));                  
+                        db.Professionals.Add(ProfessionalConvertion.ProfessionalWithoutUserToDal(professional));
                 }
                 else
                 {
@@ -135,6 +115,39 @@ namespace BL
             }
         }
 
+        public static bool IsExistsPassword(string password, int id)
+        {
+            var a = db.Users.FirstOrDefault(p => p.UserPassword == password && p.UserId != id);
+            return a != null;
+        }
+
+        //get professional
+        public static object GetProfessionalNameById(int id)
+        {
+            return db.Professionals.Find(id).BussName;
+        }
+
+        public static UsersDTO GetProfessionalById(int id)
+        {
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            {
+                var p = db.Users.Find(id);
+                if(p.Professionals!=null)
+                return ProfessionalConvertion.ProfessionalToDTO(p.Professionals);
+                return UsersConvertion.UserToDTO(p);
+            }
+        }
+
+        public static List<ProfessionalDTO> GetProfessionalList()
+        {
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            {
+                return ProfessionalConvertion.ProfessionalsListToDTO(db.Professionals.ToList());
+            }
+        }
+
+        //cities
+
         /// <summary>
         /// get list of cities
         /// </summary>
@@ -147,22 +160,9 @@ namespace BL
             }
         }
 
-        public static List<ProfessionalDTO> GetProfessionalList()
-        {
-            using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            {
-                return ProfessionalConvertion.ProfessionalsListToDTO(db.Professionals.ToList());
-            }
-        }
-        public static bool IsExistsPassword(string password,int id)
-        { var a = db.Users.FirstOrDefault(p => p.UserPassword == password && p.UserId != id);
-            return  a!= null;
-        }
         public static int SetCityId(string cityname)
         {
             return db.Cities.FirstOrDefault(c => c.CityName == cityname).CityId;
         }
-
-
     }
 }

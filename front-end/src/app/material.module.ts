@@ -11,6 +11,7 @@ import {MatButtonModule,
     MatRippleModule,
     MatSelectModule,
     MatIconModule,
+    MatProgressBarModule,
      MatCardModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
@@ -31,7 +32,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatRadioModule,
     MatSliderModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
   ],
   exports:[
     MatButtonModule,
@@ -47,7 +49,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatRadioModule,
     MatSliderModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
   ],
   declarations: []
 })

@@ -1,6 +1,10 @@
 <div>
 {{recommendation.RecommendationDate}}{{recommendation.Comments}}
-    <mat-slider min="1" max="100"  value="{{recommendation.RateArrival}}" ></mat-slider>
-    <mat-slider min="1" max="100"  value="{{recommendation.RatePrice}}"></mat-slider>
-    <mat-slider min="1" max="100"  value="{{recommendation.RateProfessionalism}}"></mat-slider>
+    <mat-progress-bar mode="determinate" value="{{recommendation.RateArrival}}"></mat-progress-bar>
+    <mat-progress-bar mode="determinate" value="{{recommendation.RatePrice}}" color="accent"></mat-progress-bar>
+    <mat-progress-bar mode="determinate" value="{{recommendation.RateProfessionalism}}" color="warn"></mat-progress-bar>
 </div>
+
+    <!-- <mat-slider min="1" max="100"  value="{{recommendation.RateArrival}}" ></mat-slider>
+    <mat-slider min="1" max="100"  value="{{recommendation.RatePrice}}"></mat-slider>
+    <mat-slider min="1" max="100"  value="{{recommendation.RateProfessionalism}}"></mat-slider> -->
