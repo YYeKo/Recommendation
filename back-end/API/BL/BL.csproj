@@ -59,6 +59,7 @@
     <Compile Include="convertion\SpecForProfConvertion.cs" />
     <Compile Include="convertion\UsersConvertion.cs" />
     <Compile Include="convertion\UserSearchConvertion.cs" />
+    <Compile Include="helpers\RecForProf.cs" />
     <Compile Include="ProfessionsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecommendationService.cs" />

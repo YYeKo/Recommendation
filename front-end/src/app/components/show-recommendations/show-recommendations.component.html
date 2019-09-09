@@ -1,7 +1,10 @@
 <div>
 {{recommendation.RecommendationDate}}{{recommendation.Comments}}
+<p>זמן {{recommendation.RateArrival}}%</p>
     <mat-progress-bar mode="determinate" value="{{recommendation.RateArrival}}"></mat-progress-bar>
+    <p>מחיר {{recommendation.RatePrice}}%</p>
     <mat-progress-bar mode="determinate" value="{{recommendation.RatePrice}}" color="accent"></mat-progress-bar>
+    <p>מקצועיות {{recommendation.RateProfessionalism}}%</p>
     <mat-progress-bar mode="determinate" value="{{recommendation.RateProfessionalism}}" color="warn"></mat-progress-bar>
 </div>
 

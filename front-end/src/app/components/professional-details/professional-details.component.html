@@ -1,5 +1,13 @@
-<div>{{professional.FirstName}} {{professional.LastName}}{{professional.DescriptionOn}}</div>
+<div>{{professional.Professional.FirstName}} {{professional.Professional.LastName}}{{professional.Professional.DescriptionOn}}</div>
 
+<div>
+<p>זמן {{professional.RateArrival}}%</p>
+    <mat-progress-bar mode="determinate" value="{{professional.RateArrival}}"></mat-progress-bar>
+    <p>מחיר {{professional.RatePrice}}%</p>
+    <mat-progress-bar mode="determinate" value="{{professional.RatePrice}}" color="accent"></mat-progress-bar>
+    <p>מקצועיות {{professional.RateProfessionalism}}%</p>
+    <mat-progress-bar mode="determinate" value="{{professional.RateProfessionalism}}" color="warn"></mat-progress-bar>
+</div>
 <a [routerLink]="['/AddRecommendation',professional.UserId]">הוסף המלצה</a>
 <button type="button" mat-raised-button (click)='showHideRec()'>{{!showRec?'הצג המלצות':'הסתר מלצות'}}</button>
 <div *ngIf="showRec">
@@ -8,4 +16,4 @@
         <li *ngFor="let result of resultRecommendationList"><app-show-recommendations [recommendation]="result"></app-show-recommendations></li>
       </ol>
 </div>
-<p>guard!!!!!!!!!</p>
+

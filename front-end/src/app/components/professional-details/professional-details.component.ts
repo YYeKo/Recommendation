@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/shared/models/user';
 import { Recommendation } from 'src/app/shared/models/recommendation';
 import { RecommendationService } from 'src/app/shared/services/recommendation.service';
+import { RecForProf } from 'src/app/shared/models/RecForProf';
 
 @Component({
   selector: 'app-professional-details',
@@ -16,12 +17,13 @@ export class ProfessionalDetailsComponent implements OnInit {
 
   resultRecommendationList:Recommendation[];
   showRec:Boolean=false;
-  @Input() professional:Professional   
+  @Input() professional:RecForProf   
   
   constructor(private recService:RecommendationService,private userService:UserService,private router:Router) {
     
   }
   ngOnInit() {
+
   }
 
  showHideRec()
@@ -32,9 +34,10 @@ export class ProfessionalDetailsComponent implements OnInit {
    this.showRec=!this.showRec;
    if(this.showRec==true)
    {
-   this.recService.getRecommendationsOfProf(this.professional.UserId).subscribe(
+   this.recService.getRecommendationsOfProf(this.professional.Professional.UserId).subscribe(
     (result)=>{ this.setRecommendationList(result)}   
   )
+
 }
  }
  getRecommendationList()

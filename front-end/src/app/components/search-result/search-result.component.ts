@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Professional } from 'src/app/shared/models/professional';
 import { RecommendationService } from 'src/app/shared/services/recommendation.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { RecForProf } from 'src/app/shared/models/RecForProf';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -20,10 +21,7 @@ export class SearchResultComponent implements OnInit {
 // dataSource = ELEMENT_DATA;
   //columnsToDisplay = ['name', 'weight', 'symbol', 'position'];
   // expandedElement: PeriodicElement | null;
-
-  
-
-  resultProfessionalsList:Professional[];
+  resultProfessionalsList:RecForProf[];
   city:string;
   profession:string;
   constructor(private recService:RecommendationService) { }

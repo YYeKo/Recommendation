@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Recommendation } from '../models/recommendation';
 import { Professional } from '../models/professional';
 import { Professions } from '../models/professions';
+import { RecForProf } from '../models/RecForProf';
 
 const BaseUrl="http://localhost:64775/api/recommendation";
 @Injectable({
@@ -13,7 +14,7 @@ export class RecommendationService {
   
   city:string;
   profession:string;
-  ProfessionalList:Professional[];
+  ProfessionalList:RecForProf[];
   
   constructor(private http:HttpClient) { }
 
@@ -22,9 +23,9 @@ export class RecommendationService {
     return this.http.post<boolean>(`${BaseUrl}/createRecommendation`,recommendation)
   }
 
-  getFilteredProfessionals(profession: any, city: any):Observable<Professional[]>
+  getFilteredProfessionals(profession: any, city: any):Observable<RecForProf[]>
   {
-     return this.http.get<Professional[]>(`${BaseUrl}/getFilteredProfessionals/${profession}/${city}`)
+     return this.http.get<RecForProf[]>(`${BaseUrl}/getFilteredProfessionals/${profession}/${city}`)
   }
   // getFilteredProfessionals(profession: any, city: any){
   //   debugger
@@ -39,7 +40,7 @@ export class RecommendationService {
     return this.ProfessionalList;
   }
 
-  setResultlist(professionals:Professional[])
+  setResultlist(professionals:RecForProf[])
   {
     this.ProfessionalList=professionals;
   }
