@@ -23,7 +23,7 @@ export class ProfessionalDetailsComponent implements OnInit {
     
   }
   ngOnInit() {
-
+this.professional.NumRec
   }
 
  showHideRec()

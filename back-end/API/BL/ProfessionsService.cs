@@ -23,22 +23,21 @@ namespace BL
         public static List<string> GetProfessionsByLetters(string str)
         {
             using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            { 
-                List<string> profName = new List<string>();
-            for (int i = 0; i < str.Length; i++)
             {
-                profName.AddRange( db.Professions.ToList().Where(p => p.ProfessionName[0] == str[i]).Select(n => n.ProfessionName).ToList());
-            }
-            return profName;
+                List<string> profName = new List<string>();
+                for (int i = 0; i < str.Length; i++)
+                {
+                    profName.AddRange(db.Professions.ToList().Where(p => p.ProfessionName[0] == str[i]).Select(n => n.ProfessionName).ToList());
+                }
+                return profName;
             }
         }
 
-       
         //get profession id by profession name
         public static int GetProfessionbyName(string name)
         {
             using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            { 
+            {
                 return db.Professions.FirstOrDefault(p => p.ProfessionName == name).ProfessionId;
             }
         }
@@ -46,4 +45,3 @@ namespace BL
 }
 
 
-    

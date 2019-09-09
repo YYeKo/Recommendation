@@ -35,8 +35,10 @@ export class SearchComponent implements OnInit {
       cl=>this.cityList=this.filteredCities=cl);
     this.professionService.getProfessions().subscribe(
       p=>
-     { debugger;
-      this.professionList=this.filteredProfessions=p});
+     {
+        debugger;
+      this.professionList=this.filteredProfessions=p
+    });
   }
 
   search()

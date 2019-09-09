@@ -8,6 +8,7 @@ import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms'
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { Professions } from 'src/app/shared/models/professions';
+import { ProfessionService } from 'src/app/shared/services/profession.service';
 
 @Component({
   selector: 'app-register',
@@ -22,11 +23,13 @@ export class RegisterComponent implements OnInit {
   profession:Professions;
   cityList: Cities[];
  title:Boolean=true;
+ professionList:Professions[];
  //------------------------
  email = new FormControl('', [Validators.required, Validators.email]);
   filteredCities: Cities[];
+  
 
-  constructor(private service: UserService, private activatedRoute: ActivatedRoute,private router: Router,private formBuilder: FormBuilder) { 
+  constructor(private service: UserService,private professionService:ProfessionService, private activatedRoute: ActivatedRoute,private router: Router,private formBuilder: FormBuilder) { 
     
     this.activatedRoute.params.subscribe(params => 
       {
@@ -64,6 +67,12 @@ export class RegisterComponent implements OnInit {
 
     this.service.getCities().subscribe(
       cl => this.filteredCities=this.cityList = cl);
+      this.professionService.getProfessions().subscribe(
+        p=>
+       {
+          debugger;
+        this.professionList=p;
+      });
   }
   register() {
     debugger

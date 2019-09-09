@@ -13,12 +13,12 @@
         <mat-error>!שדה חובה</mat-error>
     </mat-form-field>
 </div>
-<div><!--?????????????????????????????????????????????????????????????????????????????????????????????????-->
+<div>
     <mat-form-field appearance="outline" >
         <mat-label>סיסמא</mat-label>
-        <input matInput name="password" #userPassword [(ngModel)]="pass" (focus)="RemoveMessege()" required maxlength="20" [type]="hide ? 'password' : 'text'">
+        <input matInput name="password" #userPassword [(ngModel)]="pass" (focus)="RemoveMessege()" required maxlength="20" [type]="hide ? 'text' : 'password'">
         <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon>{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         </button>       
         <mat-error>!שדה חובה</mat-error>
     </mat-form-field>

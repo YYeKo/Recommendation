@@ -105,16 +105,41 @@
 </mat-form-field>
 </div>
 
-<!-- </div>
-<div [formGroup]="storeForm.controls.availableDays">
-        <mat-checkbox *ngFor="let availableDay of days;" formControlName="{{availableDay}}">{{availableDay}}</mat-checkbox>
-      </div>-->
+<mat-selection-list #professions>
+        <mat-list-option *ngFor="let profession of professionList">
+          {{profession}}
+        </mat-list-option>
+      </mat-selection-list>
+      
+      <p>
+        מספר מקצועות שנבחרו:{{professions.selectedOptions.selected.length}}
+      </p>
 </div> 
 <button type="button" mat-raised-button (click)='setProfessional()'>{{isProfessional?'בטל רישום כבעל מקצוע':'הרשם כבעל מקצוע'}}</button>
 <button mat-raised-button [disabled]="!userDetailsform.valid||!email.valid">שלח</button>
 </form>
 
-<P>בקשה להוספת מקצוע למייל</P>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
