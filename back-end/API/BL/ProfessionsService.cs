@@ -11,7 +11,6 @@ namespace BL
 {
     public class ProfessionsService
     {
-        private static RecommendationsEntities3 db = new RecommendationsEntities3();
         public static List<ProfessionDTO> GetProfessions()
         {
             using (RecommendationsEntities3 db = new RecommendationsEntities3())//??????????????????????????????????
@@ -23,19 +22,25 @@ namespace BL
 
         public static List<string> GetProfessionsByLetters(string str)
         {
-            List<string> profName = new List<string>();
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            { 
+                List<string> profName = new List<string>();
             for (int i = 0; i < str.Length; i++)
             {
                 profName.AddRange( db.Professions.ToList().Where(p => p.ProfessionName[0] == str[i]).Select(n => n.ProfessionName).ToList());
             }
             return profName;
+            }
         }
 
        
         //get profession id by profession name
         public static int GetProfessionbyName(string name)
         {
-            return db.Professions.FirstOrDefault(p => p.ProfessionName == name).ProfessionId;
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            { 
+                return db.Professions.FirstOrDefault(p => p.ProfessionName == name).ProfessionId;
+            }
         }
     }
 }

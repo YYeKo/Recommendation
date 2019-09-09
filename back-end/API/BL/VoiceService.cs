@@ -11,10 +11,7 @@ namespace BL
 {
     
     public class VoiceService
-    {
-        
-        private static readonly RecommendationsEntities3 db = new RecommendationsEntities3();
-        
+    {       
         public static string SelectedLetters(int a)
         {
             string str1 = "אבגדה";
@@ -42,10 +39,13 @@ namespace BL
         }
         public static string selectedAreas()
         {
-            string result = "";
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            { 
+                string result = "";
             int i = 1;
             db.Areas.ToList().ForEach(a => { result += $"לאיזור{a.AreaName}הקש{i++}"; });
             return result;
+            }
         }
         public static string selectedCities(int area)
         {

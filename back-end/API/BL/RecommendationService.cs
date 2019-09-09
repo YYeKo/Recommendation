@@ -12,25 +12,25 @@ namespace BL
 {
     public class RecommendationService
     {
-        private static RecommendationsEntities3 db = new RecommendationsEntities3();
         /// <summary>
         /// function for create a recommendation 
-        /// if the ratings is null -put 50 on it
+        /// if the ratings is null- put 50 on it
         /// take the date of today
         /// </summary>
         /// <param name="recommendation"></param>
         /// <returns></returns>
         public static bool CreateRecommendation(RecommendationsDTO recommendation)
         {
-            var rec = db.Recommendations.FirstOrDefault(r => r.Professional == recommendation.Professional && r.UserId == recommendation.UserId);
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            {
+                var rec = db.Recommendations.FirstOrDefault(r => r.Professional == recommendation.Professional && r.UserId == recommendation.UserId);
             if (rec != null)
                 return false;
             recommendation.RateArrival = recommendation.RateArrival == null ? 50 : recommendation.RateArrival;
             recommendation.RatePrice = recommendation.RatePrice == null ? 50 : recommendation.RatePrice;
             recommendation.RateProfessionalism = recommendation.RateProfessionalism == null ? 50 : recommendation.RateProfessionalism;
             recommendation.RecommendationDate = DateTime.Now;
-            using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            {
+            
                 db.Recommendations.Add(RecommendationConvertion.RecommendationToDal(recommendation));
                 try
                 {
@@ -48,8 +48,11 @@ namespace BL
         /// <returns></returns>
         public static List<RecommendationsDTO> GetRecommendationsOfProf(int id)
         {
-            List<RecommendationsDTO> p = RecommendationConvertion.RecommendationListToDTO(db.Recommendations.Where(r => r.Professional == id).ToList());
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            { 
+                List<RecommendationsDTO> p = RecommendationConvertion.RecommendationListToDTO(db.Recommendations.Where(r => r.Professional == id).ToList());
             return p;
+            }
         }
 
         /// <summary>
@@ -111,7 +114,9 @@ namespace BL
         }
         public static List<Professionals> GetFilteredProfessionals(int letterForProf, int profession, int area, int city)
         {
-            List<string> profName = ProfessionsService.GetProfessionsByLetters(VoiceService.SelectedLetters(letterForProf));
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            { 
+                List<string> profName = ProfessionsService.GetProfessionsByLetters(VoiceService.SelectedLetters(letterForProf));
             List<Cities> cities = GetCitiesByArea(area);
             int prof =ProfessionsService.GetProfessionbyName( profName[profession]);
             int c=cities[city].CityId;
@@ -120,7 +125,7 @@ namespace BL
             List<Professionals> result = professionals.Where(p => p.Users.City == c && prof == specforProf.FirstOrDefault(s => s.Professional == p.ProfessionalId).Profession).ToList();
 
             return result;
-            
+            }
         }
 
     }

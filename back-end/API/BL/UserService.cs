@@ -11,7 +11,6 @@ namespace BL
 {
     public class UserService
     {
-        private static RecommendationsEntities3 db = new RecommendationsEntities3();
         /// <summary>
         /// function for user login 
         /// check if the user exists in the DB
@@ -38,7 +37,9 @@ namespace BL
         /// <returns></returns>
         public static bool RegisterUser(UsersDTO user)
         {
-            var prof = db.Professionals.Find(user.UserId);
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            {
+                var prof = db.Professionals.Find(user.UserId);
             if(prof!=null)
             {               
                 prof.UserSearch.Clear();
@@ -70,7 +71,8 @@ namespace BL
                     db.SaveChanges();
                     return true;
                 }
-                catch  { return false; }           
+                catch  { return false; }
+            }
         }
 
         public static bool RegisterProfessional(ProfessionalDTO professional)//??????profession
@@ -117,14 +119,20 @@ namespace BL
 
         public static bool IsExistsPassword(string password, int id)
         {
-            var a = db.Users.FirstOrDefault(p => p.UserPassword == password && p.UserId != id);
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            { 
+                var a = db.Users.FirstOrDefault(p => p.UserPassword == password && p.UserId != id);
             return a != null;
+            }
         }
 
         //get professional
         public static object GetProfessionalNameById(int id)
         {
-            return db.Professionals.Find(id).BussName;
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            { 
+                return db.Professionals.Find(id).BussName;
+            }
         }
 
         public static UsersDTO GetProfessionalById(int id)
@@ -162,7 +170,10 @@ namespace BL
 
         public static int SetCityId(string cityname)
         {
-            return db.Cities.FirstOrDefault(c => c.CityName == cityname).CityId;
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            {
+                return db.Cities.FirstOrDefault(c => c.CityName == cityname).CityId;
+            }
         }
     }
 }
