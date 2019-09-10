@@ -28,7 +28,6 @@ export class RegisterComponent implements OnInit {
  email = new FormControl('', [Validators.required, Validators.email]);
   filteredCities: Cities[];
   
-
   constructor(private service: UserService,private professionService:ProfessionService, private activatedRoute: ActivatedRoute,private router: Router,private formBuilder: FormBuilder) { 
     
     this.activatedRoute.params.subscribe(params => 
@@ -53,7 +52,7 @@ export class RegisterComponent implements OnInit {
       else this.professional=new Professional();
     });
   }
- 
+   
   checkIfProfessional():boolean
   {
     return this.isProfessional
@@ -87,8 +86,7 @@ export class RegisterComponent implements OnInit {
         }
         else {
           alert("register failed");
-        }
-        
+        }       
       }),(err)=>{
         alert(err);
       }
@@ -110,12 +108,12 @@ export class RegisterComponent implements OnInit {
          })     
     }
   }
-  //-----------------------------------
+  //error messege email angular material
   getErrorMessage() {
     return this.email.hasError('required') ? 'שדה חובה' :
         this.email.hasError('email') ? 'כתובת מייל לא תקינה' : '';
   }
-  
+  //make the autoComplete of city list
   searchCity(event)
   {
     this.filteredCities=this.cityList.filter(city=>city.CityName.startsWith(event)==true);

@@ -16,6 +16,7 @@ export class ProfessionService {
   constructor(private http:HttpClient) { }
 
   getProfessions(): Observable<Professions[]> {
+    debugger
     return this.http.get<Professions[]>(BaseUrl+'/getProfessions')
   }
 }

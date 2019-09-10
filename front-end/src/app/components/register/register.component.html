@@ -1,6 +1,6 @@
 <h2>{{title?'הרשמה':'עדכון פרטים'}}</h2>
-
-<form *ngIf="professional!=null" #userDetailsform="ngForm"  (ngSubmit)="register()">
+{{userDetailsform}}
+<form *ngIf="professional!=null" #userDetailsform="ngForm" (ngSubmit)="register()">
 
 <div>
    <mat-form-field appearance="outline" class="example-full-width">
@@ -49,34 +49,29 @@
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>טלפון</mat-label>
                 <input matInput name="UserPhone" pattern="[0-9]{9,10}" [(ngModel)]="professional.UserPhone" required maxlength="10"  #phone="ngModel">
-                <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                 <mat-error *ngIf="phone.invalid">{{phone.errors?.required?'שדה חובה!':'מספר לא תקין'}}</mat-error>
             </mat-form-field>
     </div>
-          
-    <!-- לעשות כך : ע"י לחיצה על כפתור וכו' או שיהיו 2 קישוריות ועפ"י הקישורית נדע אם להציג את הפרטים הנוספים -->
+
 <div *ngIf="checkIfProfessional()">
         <div>
                 <mat-form-field appearance="outline" class="example-full-width">
                     <mat-label> שם עסקי</mat-label>
                     <input matInput name="BussName" [(ngModel)]="professional.BussName" required >
-                    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
                     <mat-error>!שדה חובה</mat-error>
                 </mat-form-field>
         </div>
 <div>
    <mat-form-field appearance="outline" class="example-full-width">
        <mat-label> שם פרטי</mat-label>
-       <input matInput name="FirstName" [(ngModel)]="professional.FirstName" required >
-       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <input matInput name="FirstName" [(ngModel)]="professional.FirstName" required >     
        <mat-error>!שדה חובה</mat-error>
    </mat-form-field>
 </div>
 <div>
    <mat-form-field appearance="outline" class="example-full-width">
        <mat-label> שם משפחה</mat-label>
-       <input matInput name="LastName" [(ngModel)]="professional.LastName" required >
-       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <input matInput name="LastName" [(ngModel)]="professional.LastName" required >     
        <mat-error>!שדה חובה</mat-error>
    </mat-form-field>
 </div>
@@ -84,15 +79,13 @@
    <mat-form-field appearance="outline" class="example-full-width">
        <mat-label> רחוב</mat-label>
        <input matInput name="Street" [(ngModel)]="professional.Street" required >
-       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
        <mat-error>!שדה חובה</mat-error>
    </mat-form-field>
 </div>
 <div>
    <mat-form-field appearance="outline" class="example-full-width">
        <mat-label> מספר בית</mat-label>
-       <input matInput type="number" name="NumHouse" [(ngModel)]="professional.NumHouse" required >
-       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+       <input matInput type="number" name="NumHouse" [(ngModel)]="professional.NumHouse" required >      
        <mat-error>!שדה חובה</mat-error>
    </mat-form-field>
 </div>
@@ -101,18 +94,20 @@
 <mat-form-field appearance="outline" class="example-full-width">
     <mat-label> תיאור</mat-label>
     <textarea matInput  name="DescriptionOn" [(ngModel)]="professional.DescriptionOn" maxlength="250" ></textarea>
-    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>   -->
 </mat-form-field>
 </div>
 
-<mat-selection-list #professions>
+<mat-selection-list #professions color="green">
         <mat-list-option *ngFor="let profession of professionList">
-          {{profession}}
+          {{profession.ProfessionName}}
         </mat-list-option>
       </mat-selection-list>
       
       <p>
         מספר מקצועות שנבחרו:{{professions.selectedOptions.selected.length}}
+      </p>
+      <p>
+        <!-- {{professions.selectedOptions}} -->
       </p>
 </div> 
 <button type="button" mat-raised-button (click)='setProfessional()'>{{isProfessional?'בטל רישום כבעל מקצוע':'הרשם כבעל מקצוע'}}</button>
