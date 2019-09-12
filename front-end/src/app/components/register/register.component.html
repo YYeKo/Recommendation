@@ -6,7 +6,6 @@
    <mat-form-field appearance="outline" class="example-full-width">
        <mat-label> שם משתמש</mat-label>
        <input matInput name="UserName"  [(ngModel)]="professional.UserName"  required maxlength="20">
-       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
        <mat-error>!שדה חובה</mat-error>
    </mat-form-field>
 </div>
@@ -19,7 +18,6 @@
         <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                 <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
         <mat-hint>עד 20 תווים</mat-hint>      
         <mat-error>!שדה חובה</mat-error>
     </mat-form-field>
@@ -28,7 +26,6 @@
    <mat-form-field appearance="outline" class="example-full-width">
        <mat-label> מייל</mat-label>
        <input matInput name="UserEmail"  [(ngModel)]="professional.UserEmail" [formControl]="email"  maxlength="30" required>
-       <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
    </mat-form-field>
 </div>
@@ -96,18 +93,14 @@
     <textarea matInput  name="DescriptionOn" [(ngModel)]="professional.DescriptionOn" maxlength="250" ></textarea>
 </mat-form-field>
 </div>
-
-<mat-selection-list #professions color="green">
-        <mat-list-option *ngFor="let profession of professionList">
+<!--[(ngModel)]="selectedOptions" (ngModelChange)="onNgModelChange($event)" -->
+<mat-selection-list #professions color="green"  [(ngModel)]="readingTypesSelected" (ngModelChange)="onSelection($event,professions.selectedOptions.selected)" [ngModelOptions]="{standalone: true}">
+        <mat-list-option *ngFor="let profession of professionList" [value]="profession"> 
           {{profession.ProfessionName}}
         </mat-list-option>
       </mat-selection-list>
-      
       <p>
         מספר מקצועות שנבחרו:{{professions.selectedOptions.selected.length}}
-      </p>
-      <p>
-        <!-- {{professions.selectedOptions}} -->
       </p>
 </div> 
 <button type="button" mat-raised-button (click)='setProfessional()'>{{isProfessional?'בטל רישום כבעל מקצוע':'הרשם כבעל מקצוע'}}</button>

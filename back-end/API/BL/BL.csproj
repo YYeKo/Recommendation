@@ -55,8 +55,8 @@
     <Compile Include="convertion\CitiesConvertion.cs" />
     <Compile Include="convertion\ProfessionalConvertion.cs" />
     <Compile Include="convertion\ProfessionConvertion.cs" />
+    <Compile Include="convertion\ProfForProfConvertion.cs" />
     <Compile Include="convertion\RecommendationConvertion.cs" />
-    <Compile Include="convertion\SpecForProfConvertion.cs" />
     <Compile Include="convertion\UsersConvertion.cs" />
     <Compile Include="convertion\UserSearchConvertion.cs" />
     <Compile Include="helpers\RecForProf.cs" />

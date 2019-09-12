@@ -58,3 +58,4 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   declarations: []
 })
 export class MaterialModule { }
+//::ng-deep.mat-icon{}

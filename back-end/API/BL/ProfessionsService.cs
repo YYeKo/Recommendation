@@ -19,7 +19,7 @@ namespace BL
                 return ProfessionConvertion.professionsListToDTO(db.Professions.ToList());
             }
         }
-
+        //returns the profession that begin with the letters that in string 'str'
         public static List<string> GetProfessionsByLetters(string str)
         {
             using (RecommendationsEntities3 db = new RecommendationsEntities3())
@@ -39,6 +39,20 @@ namespace BL
             using (RecommendationsEntities3 db = new RecommendationsEntities3())
             {
                 return db.Professions.FirstOrDefault(p => p.ProfessionName == name).ProfessionId;
+            }
+        }
+        public static bool SetProfessionsToProfessional(ProfessionalDTO professional)
+        {
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            {
+
+                db.ProfessionForProfessional.AddRange(professional.professions.Select(p => new ProfessionForProfessional{Profession= p.ProfessionId,Professional= professional.UserId }));
+                try
+                {
+                    db.SaveChanges();
+                    return true;
+                }
+                catch { return false; }
             }
         }
     }

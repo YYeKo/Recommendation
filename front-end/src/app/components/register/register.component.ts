@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 import { Professional } from 'src/app/shared/models/professional';
@@ -17,6 +17,8 @@ import { ProfessionService } from 'src/app/shared/services/profession.service';
 })
 export class RegisterComponent implements OnInit {
   
+  //  @Input() Professions:Professions
+  selectedOptions:Professions[];
   isProfessional=false;
   hide = true;
   professional: User;
@@ -75,7 +77,8 @@ export class RegisterComponent implements OnInit {
   }
   register() {
     debugger
-    if(this.checkIfProfessional())//,this.profession
+    if(this.checkIfProfessional()){
+    (this.professional as Professional).professions=this.selectedOptions;
     this.service.registerProfessional(this.professional).subscribe(
       
      (res) => {      
@@ -90,6 +93,7 @@ export class RegisterComponent implements OnInit {
       }),(err)=>{
         alert(err);
       }
+    }
     else
     {
       debugger
@@ -118,7 +122,11 @@ export class RegisterComponent implements OnInit {
   {
     this.filteredCities=this.cityList.filter(city=>city.CityName.startsWith(event)==true);
   }
-
-  
+//take the selected professions from the selection-list
+  onSelection(e, v) {
+    this.selectedOptions=[];
+    for (let index = 0; index < v.length; index++) {
+      this.selectedOptions.push(v[index].value);
+    }
+  }
 }
-

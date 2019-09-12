@@ -66,9 +66,9 @@ namespace BL
             using (RecommendationsEntities3 db = new RecommendationsEntities3())
             {
                 List<Professionals> f = db.Professionals.ToList();
-                List<SpecializationsForProfessionalsDTO> s = SpecForProfConvertion.SpecForProfListToDTO(db.ProfessionForProfessional.ToList());
+                List<ProfessionForProfessionalDTO> s = ProfForProfConvertion.ProfForProfListToDTO(db.ProfessionForProfessional.ToList());
                 List<RecForProf> d = f.Where(p => p.Users.City == city &&
-                profession == s.FirstOrDefault(e => e.Professional == p.Users.UserId)?.specialization).Select(p=>
+                profession == s.FirstOrDefault(e => e.Professional == p.Users.UserId)?.Profession).Select(p=>
                 new RecForProf {
                     Professional =convertion.ProfessionalConvertion.ProfessionalToDTO(p),NumRec=p.Recommendations.Count
                     ,RateArrival=(int)p.Recommendations.ToList().Average(r=>r.RateArrival).Value

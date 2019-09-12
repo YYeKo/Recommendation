@@ -49,7 +49,6 @@
     <Compile Include="ProfessionForProfessionalDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecommendationsDTO.cs" />
-    <Compile Include="SpecializationsForProfessionalsDTO.cs" />
     <Compile Include="UsersDTO.cs" />
     <Compile Include="UserSearchDTO.cs" />
   </ItemGroup>

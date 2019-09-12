@@ -18,6 +18,8 @@ import { HeaderComponent } from './components/header/header.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
 import {AddProfessionComponent} from './components/add-profession/add-profession.component';
+import { LoadingComponent } from './components/loading/loading.component';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -34,9 +36,11 @@ import {AddProfessionComponent} from './components/add-profession/add-profession
     ShowRecommendationsComponent,
     AddRecommendationComponent,
     HeaderComponent,
-    AddProfessionComponent
+    AddProfessionComponent,
+    LoadingComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,

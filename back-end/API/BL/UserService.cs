@@ -77,16 +77,17 @@ namespace BL
 
         public static bool RegisterProfessional(ProfessionalDTO professional)//??????profession
         {
-            //ProfessionalDTO professional = professionalData.professional;
-            //int profession = professionalData.profession;
+            using (RecommendationsEntities3 db = new RecommendationsEntities3())
+            {
+               
             if (professional.CityName != null)
             {
                 professional.City = SetCityId(professional.CityName);
             }
-            using (RecommendationsEntities3 db = new RecommendationsEntities3())
-            {
+            
                 var prof = db.Professionals.Find(professional.ProfessionalId);
                 var user = db.Users.Find(professional.UserId);
+                //ProfessionsService.SetProfessionsToProfessional(professional);הוספת מקצועות לבעל מקצוע
                 if (prof == null)
                 {
                     if (user == null)
@@ -107,13 +108,17 @@ namespace BL
                     prof.Users.UserPassword = professional.UserPassword;
                     prof.Users.UserPhone = professional.UserPhone;
                     prof.Users.UserName = professional.UserName;
+                    //prof.ProfessionForProfessional.Add.AddRange(professional.professions.Select(p => new ProfessionForProfessional { Profession = p.ProfessionId, Professional = professional.UserId }));
+                    //לעשות הוספת מקצועות לבעל מקצוע בשתי האפשרויות :יצירה ועדכון
                 }
+
                 try
                 {
                     db.SaveChanges();
                     return true;
                 }
                 catch { return false; }
+                
             }
         }
 
